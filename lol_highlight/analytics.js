@@ -12,7 +12,8 @@
     try {
       const url = new URL(value, location.href);
       if (!['http:','https:','file:'].includes(url.protocol)) return '';
-      return url.protocol === 'file:' ? url.pathname.split('/').pop() + url.hash : url.origin + url.pathname + url.hash;
+      const safe = url.protocol === 'file:' ? url.pathname.split('/').pop() + url.hash : url.origin + url.pathname + url.hash;
+      return safe.slice(0,100);
     } catch { return ''; }
   }
   function track(eventName, parameters = {}, callback) {
@@ -22,7 +23,7 @@
     optionalKeys.forEach(key => { payload[key] = parameters[key] ?? null; });
     if (callback) { payload.eventCallback = callback; payload.eventTimeout = 180; }
     layer.push(payload);
-    if (settings.debug) console.info('[HIGHLIGHT measurement]', payload);
+    if (settings.debug) console.info('[HIGHLIGHT measurement]', JSON.stringify(payload));
     return payload;
   }
   function elementParameters(element, extra = {}) {
@@ -42,6 +43,7 @@
   const api = {track,trackElement(element,extra={}){return track(element.dataset.trackEvent,elementParameters(element,extra));}};
   window.HighlightAnalytics = Object.freeze(api);
   layer.push({page_type:pageType,page_id:pageId,schema_version:'1.0',ga4_measurement_id:settings.ga4MeasurementId || '',debug_mode:Boolean(settings.debug)});
+  if(settings.debug) console.info('[HIGHLIGHT measurement ready]',JSON.stringify({page_type:pageType,page_id:pageId,tracked_controls:document.querySelectorAll('[data-track-event]').length}));
   const containerId = settings.gtmContainerId || '';
   const localHost = ['localhost','127.0.0.1','::1','[::1]'].includes(location.hostname);
   // Google 태그는 GTM에서 한 번만 설정하며 gtag.js를 중복 설치하지 않습니다.

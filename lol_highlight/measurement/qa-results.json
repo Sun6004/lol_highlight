@@ -1,0 +1,163 @@
+[
+  {
+    "target": "메인 요소 누락",
+    "method": "브라우저 DOM에서 a/button/summary 검사",
+    "expected": "46개 모두 data-track-id와 이벤트 보유",
+    "status": "로컬 검증 완료",
+    "result": "46 / 46 적용"
+  },
+  {
+    "target": "상세 글 요소 누락",
+    "method": "브라우저 DOM에서 a/button/summary 검사",
+    "expected": "34개 모두 이벤트 보유",
+    "status": "로컬 검증 완료",
+    "result": "34 / 34 적용"
+  },
+  {
+    "target": "요소 ID 고유성",
+    "method": "생성한 HTML 요소 매핑 검사",
+    "expected": "80개 ID가 모두 고유",
+    "status": "로컬 검증 완료",
+    "result": "80개 고유 ID, 요소 매핑 시트와 코드가 동일"
+  },
+  {
+    "target": "이벤트 종류",
+    "method": "실제 브라우저 조작 후 디버그 로그 검사",
+    "expected": "설계한 12종 이벤트 확인",
+    "status": "로컬 검증 완료",
+    "result": "12 / 12 이벤트 발생 확인"
+  },
+  {
+    "target": "경기 탭 중복 방지",
+    "method": "선택 탭 재클릭, 준결승 2회 클릭, 방향키 전환",
+    "expected": "선택이 바뀐 semi/final만 각 1회",
+    "status": "로컬 검증 완료",
+    "result": "현재 선택 탭 재클릭 제외, 방향키 전환 포함"
+  },
+  {
+    "target": "FAQ 기본 열림 제외",
+    "method": "기본 열린 FAQ를 닫고 다시 열기",
+    "expected": "초기 open 없음. close/open 각 1회",
+    "status": "로컬 검증 완료",
+    "result": "기본 상태를 사용자 행동으로 집계하지 않음"
+  },
+  {
+    "target": "스크롤 깊이",
+    "method": "스크롤 및 앵커 이동으로 페이지 하단 도달",
+    "expected": "25/50/75/90 구간마다 문서당 1회",
+    "status": "로컬 검증 완료",
+    "result": "4개 구간 각각 1회"
+  },
+  {
+    "target": "섹션 노출",
+    "method": "제목 노출 후 재진입",
+    "expected": "노출 이벤트 존재, 같은 문서의 섹션 중복 없음",
+    "status": "로컬 검증 완료",
+    "result": "home 등 섹션 노출 확인, 문서 내 중복 없음"
+  },
+  {
+    "target": "영상 CTA 목적지",
+    "method": "메인·상세 글 영상 버튼 Ctrl+클릭",
+    "expected": "video_outbound_click, channel_search, 정확한 섹션",
+    "status": "로컬 검증 완료",
+    "result": "watch / official_videos의 공식 채널 이동 구분"
+  },
+  {
+    "target": "선수 SNS",
+    "method": "상세 글 Faker Instagram Ctrl+클릭",
+    "expected": "social_click, player_name=Faker",
+    "status": "로컬 검증 완료",
+    "result": "Faker와 www.instagram.com 전달 확인"
+  },
+  {
+    "target": "명장면 카드",
+    "method": "메인 한타 카드 이미지 클릭",
+    "expected": "highlight_select 1회, 테마와 카드 순서 전달",
+    "status": "로컬 검증 완료",
+    "result": "teamfight, content_rank=1. 같은 클릭에 article_open 중복 없음"
+  },
+  {
+    "target": "상세 글 유입",
+    "method": "헤더 홍보 글 상세 링크 클릭",
+    "expected": "article_open 1회",
+    "status": "로컬 검증 완료",
+    "result": "헤더 링크에서 상세 글 이동 이벤트 확인"
+  },
+  {
+    "target": "모바일 메뉴",
+    "method": "390px 메뉴 열기 후 Escape",
+    "expected": "mobile, open/close, 닫힘 사유 escape",
+    "status": "로컬 검증 완료",
+    "result": "메뉴가 열리고 닫힐 때만 기록"
+  },
+  {
+    "target": "URL 쿼리 제거",
+    "method": "영상·출처 링크의 분석용 URL 확인",
+    "expected": "? 이후 문자열 없음, 100자 이하",
+    "status": "로컬 검증 완료",
+    "result": "실제 링크는 유지, 분석 URL에서 검색어·쿼리 제외"
+  },
+  {
+    "target": "이전 매개변수 초기화",
+    "method": "카드 이벤트 다음에 출처 이벤트 발행",
+    "expected": "content_rank/faq_id/round_name이 null로 초기화",
+    "status": "로컬 검증 완료",
+    "result": "dataLayer 버전 2에서 이전 이벤트 값이 남지 않도록 초기화"
+  },
+  {
+    "target": "dataLayer 보존",
+    "method": "기존 dataLayer가 있는 페이지에서 초기화",
+    "expected": "기존 배열을 덮어쓰지 않음",
+    "status": "로컬 검증 완료",
+    "result": "기존 마커 보존"
+  },
+  {
+    "target": "스크립트 중복 방지",
+    "method": "analytics.js를 같은 컨텍스트에서 2회 실행",
+    "expected": "GTM 스크립트 1개만 생성",
+    "status": "로컬 검증 완료",
+    "result": "유효 형식 테스트 ID는 VM에서만 사용, 네트워크 요청 없음"
+  },
+  {
+    "target": "ID 미입력·file 접근",
+    "method": "ID 없음 및 file:// 환경에서 실행",
+    "expected": "GTM 외부 스크립트 로드 안 함",
+    "status": "로컬 검증 완료",
+    "result": "ID 없이도 로컬 이벤트 큐와 사이트 기능 사용 가능"
+  },
+  {
+    "target": "개발 호스트 전송 제한",
+    "method": "localhost 기본 설정과 allowLocalhost:true 비교",
+    "expected": "기본 로드 없음, 명시 허용 시 1개 로드",
+    "status": "로컬 검증 완료",
+    "result": "로컬 수신 검증 시만 allowLocalhost 활성"
+  },
+  {
+    "target": "GA4 이벤트 규격",
+    "method": "브라우저 이벤트의 이름·매개변수 검사",
+    "expected": "이름 40자 이하, 사용자 매개변수 25개 이하",
+    "status": "로컬 검증 완료",
+    "result": "12개 이벤트, 각 이벤트 19개 매개변수"
+  },
+  {
+    "target": "GTM Preview 실제 연결",
+    "method": "실제 GTM-…/G-… 입력 후 Tag Assistant 연결",
+    "expected": "태그 1회 실행·변수값 확인",
+    "status": "ID 입력 대기",
+    "result": "Google 계정 설정 및 게시 후 실행. 로컬 검증 완료와 구분합니다."
+  },
+  {
+    "target": "GA4 실제 수신",
+    "method": "GA4 DebugView와 collect 요청 확인",
+    "expected": "12종 이벤트·매개변수 수신 확인",
+    "status": "ID 입력 대기",
+    "result": "Google 계정 설정 및 게시 후 실행. 로컬 검증 완료와 구분합니다."
+  },
+  {
+    "target": "핵심 이벤트·운영 게시",
+    "method": "GA4 핵심 이벤트 등록 및 GTM 게시",
+    "expected": "video_outbound_click 핵심 이벤트와 운영 수집 확인",
+    "status": "ID 입력 대기",
+    "result": "Google 계정 설정 및 게시 후 실행. 로컬 검증 완료와 구분합니다."
+  }
+]
